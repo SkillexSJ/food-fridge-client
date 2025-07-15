@@ -1,0 +1,112 @@
+[
+  {
+    "id": "1",
+    "foodImage": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Whole Milk",
+    "category": "Dairy",
+    "quantity": "2 Liters",
+    "expiryDate": "2025-07-25",
+    "description": "Fresh whole milk, pasteurized and homogenized.",
+    "addedDate": "2025-07-10",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "2",
+    "foodImage": "hhttps://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Chicken Breast",
+    "category": "Meat",
+    "quantity": "1 kg",
+    "expiryDate": "2025-07-16",
+    "description": "Boneless skinless chicken breast.",
+    "addedDate": "2025-07-12",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "3",
+    "foodImage": "hhttps://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Spinach",
+    "category": "Vegetables",
+    "quantity": "500 grams",
+    "expiryDate": "2025-07-15",
+    "description": "Organic fresh spinach leaves.",
+    "addedDate": "2025-07-11",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "4",
+    "foodImage": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Cheddar Cheese",
+    "category": "Dairy",
+    "quantity": "200 grams",
+    "expiryDate": "2025-08-01",
+    "description": "Sharp cheddar cheese block.",
+    "addedDate": "2025-07-10",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "5",
+    "foodImage": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Red Apples",
+    "category": "Fruits",
+    "quantity": "6 pieces",
+    "expiryDate": "2025-07-20",
+    "description": "Crisp and sweet red apples.",
+    "addedDate": "2025-07-13",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "6",
+    "foodImage": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Brown Eggs",
+    "category": "Dairy",
+    "quantity": "12 pieces",
+    "expiryDate": "2025-07-30",
+    "description": "Free-range organic brown eggs.",
+    "addedDate": "2025-07-10",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "7",
+    "foodImage": "hthttps://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Broccoli",
+    "category": "Vegetables",
+    "quantity": "1 head",
+    "expiryDate": "2025-07-17",
+    "description": "Fresh green broccoli, rich in fiber.",
+    "addedDate": "2025-07-12",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "8",
+    "foodImage": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Greek Yogurt",
+    "category": "Dairy",
+    "quantity": "500 grams",
+    "expiryDate": "2025-07-28",
+    "description": "Plain unsweetened Greek yogurt.",
+    "addedDate": "2025-07-11",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "9",
+    "foodImage": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Potato Chips",
+    "category": "Snacks",
+    "quantity": "150 grams",
+    "expiryDate": "2025-12-01",
+    "description": "Salted potato chips in a resealable bag.",
+    "addedDate": "2025-07-13",
+    "userEmail": "sajid@example.com"
+  },
+  {
+    "id": "10",
+    "foodImage": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+    "foodTitle": "Oranges",
+    "category": "Fruits",
+    "quantity": "4 pieces",
+    "expiryDate": "2025-07-21",
+    "description": "Juicy Valencia oranges.",
+    "addedDate": "2025-07-14",
+    "userEmail": "sajid@example.com"
+  }
+]
