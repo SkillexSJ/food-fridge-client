@@ -17,8 +17,8 @@ const Home = () => {
 
       <div className="divider divider-info">Info</div>
 
-      <div className="text-center my-10 space-y-20 ">
-        <h1 className="text-5xl lg:text-7xl">TOP 6 TO BE EXPIRED</h1>
+      <div className="text-center font-extrabold my-10 space-y-20 ">
+        <h1 className="text-3xl lg:text-5xl">TOP 6 TO BE EXPIRED</h1>
         <ExpiryFood data={data}></ExpiryFood>
       </div>
 

@@ -1,4 +1,7 @@
+import Lottie from "lottie-react";
 import React from "react";
+import add from "../../../assets/lottie/Check animation.json";
+import track from "../../../assets/lottie/Gears Lottie Animation.json";
 
 const HowWorks = () => {
   return (
@@ -14,8 +17,8 @@ const HowWorks = () => {
         </div>
         <div className="mt-12 grid grid-cols-1 gap-12 text-center md:grid-cols-3">
           <div className="flex flex-col items-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-500 text-white">
-              <svg
+            <div className="flex h-15 w-40 items-center justify-center rounded-full  text-white">
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-8 w-8"
                 fill="none"
@@ -28,7 +31,8 @@ const HowWorks = () => {
                   strokeWidth="2"
                   d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                 />
-              </svg>
+              </svg> */}
+              <Lottie animationData={add}></Lottie>
             </div>
             <h3 className="mt-5 text-lg font-medium text-gray-900">
               1. Add Your Food
@@ -39,8 +43,8 @@ const HowWorks = () => {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-500 text-white">
-              <svg
+            <div className="flex h-16 w-38 items-center justify-center rounded-full  text-white">
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-8 w-8"
                 fill="none"
@@ -59,7 +63,9 @@ const HowWorks = () => {
                   strokeWidth="2"
                   d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                 />
-              </svg>
+              </svg> */}
+
+              <Lottie animationData={track}></Lottie>
             </div>
             <h3 className="mt-5 text-lg font-medium text-gray-900">
               2. Track & Monitor

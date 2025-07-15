@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router";
+import login from "../../assets/lottie/Pin code Password Protection, Secure Login animation.json";
+import Lottie from "lottie-react";
 
 const Login = () => {
   const handleLogin = (e) => {
@@ -11,9 +13,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-full flex-col justify-center bg-gray-50 px-6 py-12 lg:px-8">
+    <div className="flex mb-10 min-h-full items-center flex-col justify-center px-6 py-8 lg:px-8">
+      <div className="flex justify-center mb-4">
+        <div className="w-32 sm:w-40 md:w-52 lg:w-64">
+          <Lottie animationData={login} loop={true} />
+        </div>
+      </div>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
         </h2>
       </div>

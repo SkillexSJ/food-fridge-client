@@ -1,0 +1,15 @@
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  color: var(--color-teal-800); /* gray-600 */
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+/* var(--color-teal-50) */
+.nav-link.active {
+  background-color: var(--color-teal-800);
+  color: var(--color-teal-50);
+  font-weight: 600;
+}
