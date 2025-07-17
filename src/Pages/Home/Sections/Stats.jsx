@@ -1,5 +1,7 @@
 import React from "react";
 import CountUp from "react-countup";
+import { Magnetic } from "../../../Components/animate-ui/effects/Magnetic";
+
 const Stats = () => {
   return (
     <section className="bg-teal-50 py-12 md:py-20">
@@ -12,31 +14,39 @@ const Stats = () => {
             Together, we're making a real difference in reducing food waste.
           </p>
         </div>
+
         <div className="mt-12 grid grid-cols-1 gap-8 text-center md:grid-cols-3">
-          <div className="rounded-lg bg-white p-8 shadow-lg">
-            <p className="text-5xl font-extrabold text-teal-600">
-              <CountUp duration={20} end={223232} /> +
-            </p>
-            <p className="mt-2 text-lg font-medium text-gray-500">
-              Meals Saved
-            </p>
-          </div>
-          <div className="rounded-lg bg-white p-8 shadow-lg">
-            <p className="text-5xl font-extrabold text-teal-600">
-              <CountUp duration={20} end={2632} /> +
-            </p>
-            <p className="mt-2 text-lg font-medium text-gray-500">
-              Users Joined
-            </p>
-          </div>
-          <div className="rounded-lg bg-white p-8 shadow-lg">
-            <p className="text-5xl font-extrabold text-teal-600">
-              <CountUp duration={20} end={123742} /> +
-            </p>
-            <p className="mt-2 text-lg font-medium text-gray-500">
-              Items Tracked
-            </p>
-          </div>
+          <Magnetic>
+            <div className="rounded-lg bg-white p-8 shadow-lg">
+              <p className="text-5xl font-extrabold text-teal-600">
+                <CountUp duration={20} end={223232} /> +
+              </p>
+              <p className="mt-2 text-lg font-medium text-gray-500">
+                Meals Saved
+              </p>
+            </div>
+          </Magnetic>
+          <Magnetic>
+            <div className="rounded-lg bg-white p-8 shadow-lg">
+              <p className="text-5xl font-extrabold text-teal-600">
+                <CountUp duration={20} end={2632} /> +
+              </p>
+              <p className="mt-2 text-lg font-medium text-gray-500">
+                Users Joined
+              </p>
+            </div>
+          </Magnetic>
+
+          <Magnetic>
+            <div className="rounded-lg bg-white p-8 shadow-lg">
+              <p className="text-5xl font-extrabold text-teal-600">
+                <CountUp duration={20} end={123742} /> +
+              </p>
+              <p className="mt-2 text-lg font-medium text-gray-500">
+                Items Tracked
+              </p>
+            </div>
+          </Magnetic>
         </div>
       </div>
     </section>

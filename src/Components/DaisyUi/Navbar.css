@@ -13,3 +13,19 @@
   color: var(--color-teal-50);
   font-weight: 600;
 }
+
+/* for avatar dropdown */
+.show:hover ul.cat {
+  max-height: inherit;
+  opacity: 1;
+}
+
+.cat {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  max-height: 0px;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 300ms ease;
+}

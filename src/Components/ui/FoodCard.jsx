@@ -53,7 +53,7 @@ const FoodCard = ({ item }) => {
             </div>
           </div>
           <div className="mt-6">
-            <NavLink to={`/food/${item.id}`}>
+            <NavLink to={`/food/${item._id}`}>
               <button className="w-full rounded-lg bg-gray-800 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-gray-900">
                 See Details
               </button>

@@ -8,6 +8,8 @@ import Fridge from "../Pages/Fridge/Fridge";
 import FoodDetailsPage from "../Pages/FoodDetailsPage";
 import AddFood from "../Pages/AddFood/AddFood";
 import MyItems from "../Pages/MyItems/MyItems";
+import MyProfile from "../Pages/MyProfile/MyProfile";
+import PrivateRoute from "../Provider/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +20,7 @@ const router = createBrowserRouter([
       {
         index: true,
         loader: async () => {
-          const res = await fetch("/fakedata.json");
+          const res = await fetch("http://localhost:3000/foods");
           const data = await res.json();
           return data;
         },
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
 
       {
         loader: async () => {
-          const res = await fetch("/fakedata.json");
+          const res = await fetch("http://localhost:3000/foods");
           const data = await res.json();
           return data;
         },
@@ -38,27 +40,44 @@ const router = createBrowserRouter([
       {
         path: "/food/:id",
         loader: async ({ params }) => {
-          const res = await fetch("/fakedata.json");
-          const data = await res.json();
-          const item = data.find((item) => item.id === params.id);
-          return item;
+          console.log(params.id);
+          const res = await fetch(`http://localhost:3000/foods/${params.id}`);
+          return res.json();
         },
-        element: <FoodDetailsPage></FoodDetailsPage>,
+        element: (
+          <PrivateRoute>
+            <FoodDetailsPage></FoodDetailsPage>
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "/addfood",
-        element: <AddFood></AddFood>,
+
+        element: (
+          <PrivateRoute>
+            <AddFood></AddFood>
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "/myitems",
-        loader: async () => {
-          const res = await fetch("/fakedata.json");
-          const data = await res.json();
-          return data;
-        },
-        element: <MyItems></MyItems>,
+        element: (
+          <PrivateRoute>
+            <MyItems></MyItems>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/myprofile",
+
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
       },
     ],
   },

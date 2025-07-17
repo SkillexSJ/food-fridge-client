@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const FridgeCard = ({ item }) => {
   const isExpired = new Date(item.expiryDate) < new Date();
@@ -49,9 +50,11 @@ const FridgeCard = ({ item }) => {
           </div>
         </div>
         <div className="mt-6">
-          <button className="w-full rounded-lg bg-gray-800 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-gray-900">
-            See Details
-          </button>
+          <NavLink to={`/food/${item._id}`}>
+            <button className="w-full rounded-lg bg-teal-800 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-gray-900">
+              See Details
+            </button>
+          </NavLink>
         </div>
       </div>
     </div>

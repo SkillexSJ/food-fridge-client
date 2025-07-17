@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router";
+import React, { useContext, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import login from "../../assets/lottie/Pin code Password Protection, Secure Login animation.json";
 import Lottie from "lottie-react";
+import { AuthContext } from "../../Provider/AuthContext";
 const Register = () => {
+  const { createUser, updateUser, setUser } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -28,11 +32,20 @@ const Register = () => {
       return;
     }
 
-    const userData = { name, email, photoURL, password };
-    console.log("New User Registered:", userData);
-    alert("Registration successful!");
-    e.target.reset();
-    setPage("login");
+    createUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateUser({ displayName: name, photoURL: photoURL }).then(() => {
+          setUser({ ...user, displayName: name, photoURL: photoURL });
+          alert("HURAAAY");
+        });
+
+        navigate(location.state || "/");
+      })
+      .catch((error) => {
+        setError(error.message);
+        alert("HAYHAYYYY");
+      });
   };
 
   return (
@@ -40,7 +53,9 @@ const Register = () => {
       <div className="grid w-full max-w-6xl grid-cols-1 overflow-hidden rounded-xl bg-white shadow-2xl md:grid-cols-2">
         {/* Welcome Section */}
         <div className="hidden flex-col justify-center bg-teal-600 p-12 text-white md:flex">
-          <h2 className="text-3xl font-bold">Welcome to FoodFridge!</h2>
+          <h2 className="text-3xl font-arvo  text-center font-bold">
+            Welcome to FoodFridge!
+          </h2>
           <p className="mt-4">
             Join our community to reduce food waste and save money. Let's make a
             difference together.

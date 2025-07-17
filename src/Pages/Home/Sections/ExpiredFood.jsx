@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import FoodCard from "../../../Components/ui/FoodCard";
-import FridgeCard from "../../../Components/ui/FridgeCard";
 
 const ExpiredFood = ({ data }) => {
   const today = new Date();
@@ -10,10 +9,6 @@ const ExpiredFood = ({ data }) => {
     const expiry = new Date(item.expiryDate);
     return expiry < today;
   });
-
-  if (expiredItems.length === 0) {
-    return null;
-  }
 
   // Animation variants
   const containerVariants = {
@@ -53,15 +48,25 @@ const ExpiredFood = ({ data }) => {
             These items have passed their expiry date. Please check them.
           </motion.p>
         </div>
+
         <motion.div
           className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
         >
-          {expiredItems.map((item, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <FoodCard item={item} />
+          {expiredItems.length > 0 ? (
+            expiredItems.map((item, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <FoodCard item={item} />
+              </motion.div>
+            ))
+          ) : (
+            <motion.div
+              className="col-span-full text-center text-gray-500 font-semibold text-xl"
+              variants={itemVariants}
+            >
+              No expired items available.
             </motion.div>
-          ))}
+          )}
         </motion.div>
       </div>
     </motion.section>
