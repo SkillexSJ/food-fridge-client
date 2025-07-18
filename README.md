@@ -4,11 +4,7 @@
 
 ---
 
-<p align="center">
-  <a href="https://food-fridge-8be96.web.app/" style="font-size: 24px; font-weight: bold;">
-    🚀 <span style="font-size:28px;">Visit Food Fridge</span>
-  </a>
-</p>
+## 🌍 **[Click Here to Visit Food Fridge! 🚀](https://food-fridge-8be96.web.app/)**
 
 
 
@@ -37,7 +33,7 @@ Food waste is a huge problem in households and businesses. **Food Fridge** aims 
 ⚛️ React (Vite) | 🎨 Tailwind CSS & DaisyUI | 🌐 Axios | 🧭 React Router  
 
 **Backend:**  
-🖥 Node.js + Express | 🍃 MongoDB (Mongoose) | 🔥 Firebase Admin SDK  
+🖥 Node.js + Express | 🍃 MongoDB | 🔥 Firebase Admin  
 
 **Hosting:**  
 - **Frontend:** Firebase Hosting  
