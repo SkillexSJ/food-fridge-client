@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import app from "../Config/firebase";
 import { AuthContext } from "./AuthContext";
+import axios from "axios";
 
 const auth = getAuth(app);
 
@@ -44,14 +45,36 @@ const Authprovider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      setLoading(false); // user dhuke gese ekhon loading diyen na
+      setLoading(false);
+
+      if (currentUser) {
+        const token = await currentUser.getIdToken();
+
+        try {
+          await axios.post(
+            "http://localhost:3000/auth/login",
+            { token },
+            { withCredentials: true } // Important to send cookies
+          );
+        } catch (error) {
+          console.error("Failed to set auth cookie:", error);
+        }
+      } else {
+        try {
+          await axios.post(
+            "http://localhost:3000/auth/logout",
+            {},
+            { withCredentials: true }
+          );
+        } catch (error) {
+          console.error("Failed to clear auth cookie:", error);
+        }
+      }
     });
 
-    return () => {
-      unSubscribe();
-    };
+    return () => unSubscribe();
   }, []);
 
   const authData = {

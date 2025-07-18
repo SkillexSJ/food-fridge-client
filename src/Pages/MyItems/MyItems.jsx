@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import axios from "axios";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const MyItems = () => {
   const { user } = useContext(AuthContext);
@@ -9,15 +10,48 @@ const MyItems = () => {
   const [myFoods, setMyFoods] = useState([]);
   const [editingFood, setEditingFood] = useState(null);
 
+  const notify = () =>
+    toast.success("Food Updated!", {
+      style: {
+        border: "1px solid #116f6f",
+        padding: "16px",
+        color: "black",
+      },
+      iconTheme: {
+        primary: "#116f6f",
+        secondary: "#FFFAEE",
+      },
+    });
+
+  const notify2 = () =>
+    toast.error("Failed To Update!🥲", {
+      style: {
+        border: "1px solid #116f6f",
+        padding: "16px",
+        color: "black",
+      },
+      iconTheme: {
+        primary: "#116f6f",
+        secondary: "#FFFAEE",
+      },
+    });
+
   // Fetch user-specific foods
   useEffect(() => {
-    if (user?.email) {
-      fetch(`http://localhost:3000/foods?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setMyFoods(data))
-        .catch((err) => console.error("Error fetching recipes:", err));
-    }
-  }, [user?.email]);
+    const fetchUserFoods = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3000/user-foods?email=${user.email}`,
+          { withCredentials: true }
+        );
+        setMyFoods(res.data);
+      } catch (error) {
+        console.error("Error fetching user foods:", error);
+      }
+    };
+
+    if (user?.email) fetchUserFoods();
+  }, [user]);
 
   // Open modal with selected food
   const openModal = (item) => {
@@ -32,38 +66,40 @@ const MyItems = () => {
     try {
       const response = await axios.put(
         `http://localhost:3000/foods/${editingFood._id}`,
-        editingFood
+        editingFood,
+        { withCredentials: true }
       );
 
       if (response.data.modifiedCount > 0 || response.status === 200) {
-        // Update
         setMyFoods((prev) =>
           prev.map((item) =>
             item._id === editingFood._id ? { ...item, ...editingFood } : item
           )
         );
 
-        alert("✅ Food updated successfully!");
+        notify();
         setEditingFood(null);
         document.getElementById("update_modal").close();
       } else {
-        alert("❌ Update failed on server");
+        notify2();
       }
     } catch (error) {
-      console.error("Update error:", error);
-      alert("❌ Failed to update item.");
+      notify2();
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/foods/${id}`);
+      const response = await axios.delete(`http://localhost:3000/foods/${id}`, {
+        withCredentials: true,
+      });
+
       if (response.data.deletedCount > 0) {
         setMyFoods(myFoods.filter((item) => item._id !== id));
-        alert("🗑️ Food deleted successfully!");
+        notify();
       }
     } catch (error) {
-      alert("❌ Deletion failed:", error);
+      notify2();
     }
   };
 
@@ -72,7 +108,7 @@ const MyItems = () => {
       <section className="bg-gray-50 py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-teal-800 sm:text-4xl">
               My Added Food Items
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
@@ -84,24 +120,24 @@ const MyItems = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                  <th className="px-6 py-3 text-left text-lg font-semibold uppercase text-gray-500">
                     Food
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                  <th className="px-6 py-3 text-left text-lg font-semibold uppercase text-gray-500">
                     Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                  <th className="px-6 py-3 text-left text-lg font-semibold uppercase text-gray-500">
                     Quantity
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                  <th className="px-6 py-3 text-left text-lg font-semibold uppercase text-gray-500">
                     Expires On
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium uppercase text-gray-500">
+                  <th className="px-6 py-3 text-right text-lg font-semibold uppercase text-gray-500">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
+              <tbody className="divide-y divide-teal-600 bg-white">
                 {myFoods.map((item, index) => (
                   <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -109,9 +145,9 @@ const MyItems = () => {
                         <img
                           src={item.foodImage}
                           alt={item.foodTitle}
-                          className="h-10 w-10 rounded-full object-cover"
+                          className="h-20 w-20 rounded-full object-cover"
                         />
-                        <div className="ml-4 text-sm font-medium text-gray-900">
+                        <div className="ml-4 text-lg  font-bold text-teal-800">
                           {item.foodTitle}
                         </div>
                       </div>

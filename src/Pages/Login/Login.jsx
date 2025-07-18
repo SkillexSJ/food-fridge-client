@@ -4,12 +4,25 @@ import login from "../../assets/lottie/Pin code Password Protection, Secure Logi
 import Lottie from "lottie-react";
 import { AuthContext } from "../../Provider/AuthContext";
 import { FcGoogle } from "react-icons/fc";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { signIn, signInWithGoogle, setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
+  const notify = () =>
+    toast.success("Welcome!", {
+      style: {
+        border: "1px solid #116f6f",
+        padding: "16px",
+        color: "black",
+      },
+      iconTheme: {
+        primary: "#116f6f",
+        secondary: "#FFFAEE",
+      },
+    });
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,6 +36,7 @@ const Login = () => {
         // setError("");
         // notify();
         setUser(user);
+        notify();
         navigate(location.state || "/");
       })
       .catch((error) => {
@@ -49,6 +63,7 @@ const Login = () => {
 
   return (
     <div className="flex mb-10 min-h-full items-center flex-col justify-center px-6 py-8 lg:px-8">
+      <Toaster position="top-center" reverseOrder={true} />
       <div className="flex justify-center mb-4">
         <div className="w-32 sm:w-40 md:w-52 lg:w-64">
           <Lottie animationData={login} loop={true} />

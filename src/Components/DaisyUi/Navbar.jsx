@@ -1,13 +1,14 @@
 import React, { use } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import "./Navbar.css";
 import { BiFridge } from "react-icons/bi";
 import { AuthContext } from "../../Provider/AuthContext";
 import { Magnetic } from "../../Components/animate-ui/effects/Magnetic";
+import toast, { Toaster } from "react-hot-toast";
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-
+  const navigate = useNavigate();
   const links = (
     <>
       <NavLink
@@ -70,13 +71,28 @@ const Navbar = () => {
     </>
   );
 
+  const notify = () =>
+    toast.success("BYE BYE ! 👋", {
+      style: {
+        border: "1px solid #116f6f",
+        padding: "16px",
+        color: "black",
+      },
+      iconTheme: {
+        primary: "#116f6f",
+        secondary: "#FFFAEE",
+      },
+    });
+
   const handleLogOut = () => {
     logOut().then(() => {
-      alert("logout hoye gelo");
+      navigate("/auth/login");
+      notify();
     });
   };
   return (
     <div className="navbar py-5 lg:px-15 lg:py-5">
+      <Toaster></Toaster>
       <div className="navbar-start space-x-4">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="lg:hidden">
@@ -123,19 +139,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Dropdown - Ensure it's inside the group and no margin creates hover gaps */}
+          {/* Dropdown */}
           <div className="absolute right-0 top-full bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow group-hover:opacity-100 invisible group-hover:visible transition-all duration-300">
             <ul className="px-1 flex flex-col space-x-5">{links2}</ul>
           </div>
         </div>
-        {/* <NavLink
-          className="btn bg-teal-800 border-none text-teal-50 font-arvo hidden lg:flex"
-          to="/auth/login"
-        >
-          {" "}
-          Login
-        </NavLink> */}
-
         {user?.email ? (
           <NavLink
             onClick={handleLogOut}

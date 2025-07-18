@@ -5,9 +5,9 @@ import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../../Provider/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import toast, { Toaster } from "react-hot-toast";
 const AddFood = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     foodTitle: "",
@@ -17,6 +17,32 @@ const AddFood = () => {
     expiryDate: "",
     description: "",
   });
+
+  const notify = () =>
+    toast.success("Food Added!", {
+      style: {
+        border: "1px solid #116f6f",
+        padding: "16px",
+        color: "black",
+      },
+      iconTheme: {
+        primary: "#116f6f",
+        secondary: "#FFFAEE",
+      },
+    });
+
+  const notify2 = () =>
+    toast.error("Failed To Add!", {
+      style: {
+        border: "1px solid #116f6f",
+        padding: "16px",
+        color: "black",
+      },
+      iconTheme: {
+        primary: "#116f6f",
+        secondary: "#FFFAEE",
+      },
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,29 +60,19 @@ const AddFood = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/foods",
-        dataToSend
-      );
-      alert("Successfully added:");
-      // Optionally reset form or show success message
-
-      setFormData({
-        foodTitle: "",
-        foodImage: "",
-        category: "Dairy", // or your default category
-        quantity: "",
-        expiryDate: "",
-        description: "",
+      await axios.post("http://localhost:3000/foods", dataToSend, {
+        withCredentials: true, // send cookies
       });
+      notify();
       navigate("/myitems");
-    } catch (error) {
-      console.error("Error adding food:", error);
+    } catch (err) {
+      notify2();
     }
   };
 
   return (
     <div className="flex min-h-full items-center justify-center bg-gray-50 p-4 sm:p-6 lg:p-8">
+      <Toaster></Toaster>
       <div className="grid w-full max-w-6xl grid-cols-1 overflow-hidden rounded-xl bg-white shadow-2xl md:grid-cols-2">
         {/* Welcome Section */}
         <div className="hidden flex-col gap-10 justify-center bg-teal-600 p-12 text-white md:flex">
@@ -78,7 +94,7 @@ const AddFood = () => {
         <div className="flex flex-col justify-center p-8 sm:p-12">
           <div className="w-full">
             <div className="text-center">
-              <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-extrabold tracking-tight text-teal-800 sm:text-4xl">
                 <Typewriter
                   words={["Setup New Food Item"]}
                   loop={2}
@@ -149,7 +165,7 @@ const AddFood = () => {
                       required
                       value={formData.category}
                       onChange={handleChange}
-                      className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6"
                     >
                       <option>Dairy</option>
                       <option>Meat</option>
@@ -197,7 +213,7 @@ const AddFood = () => {
                     required
                     value={formData.expiryDate}
                     onChange={handleChange}
-                    className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -220,16 +236,14 @@ const AddFood = () => {
                   ></textarea>
                 </div>
               </div>
-              <div className="grid grid-cols-1 gap-x-6 gap-y-8 rounded-lg bg-gray-50 p-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-8 rounded-lg text-teal-50 bg-teal-800 p-4 sm:grid-cols-2">
                 <div>
-                  <p className="text-sm font-medium text-gray-500">Added By</p>
-                  <p className="mt-1 text-base font-semibold text-gray-900">
-                    {user?.email}
-                  </p>
+                  <p className="text-sm font-medium ">Added By</p>
+                  <p className="mt-1 text-base font-semibold ">{user?.email}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-500">Added On</p>
-                  <p className="mt-1 text-base font-semibold text-gray-900">
+                  <p className="text-sm font-medium">Added On</p>
+                  <p className="mt-1 text-base font-semibold">
                     {new Date().toLocaleDateString()}
                   </p>
                 </div>

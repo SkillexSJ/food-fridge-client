@@ -20,14 +20,16 @@ const Home = () => {
       <div className="my-12 h-0.5 border-t-0 bg-teal-800 opacity-100 dark:opacity-50"></div>
 
       <div className="text-center font-extrabold my-10 space-y-20 ">
-        <h1 className="text-3xl lg:text-5xl">TOP 6 TO BE EXPIRED</h1>
+        <h1 className="text-3xl text-teal-800 lg:text-5xl">
+          TOP 6 TO BE EXPIRED
+        </h1>
         <ExpiryFood data={data}></ExpiryFood>
       </div>
 
       <div className="my-12 h-0.5 border-t-0 bg-teal-800 opacity-100 dark:opacity-50"></div>
 
       <div>
-        <h1 className="text-center font-extrabold text-5xl my-10">
+        <h1 className="text-center text-teal-800 font-extrabold text-5xl my-10">
           EXPIRED !!
         </h1>
         <ExpiredFood data={data}></ExpiredFood>

@@ -10,6 +10,7 @@ import AddFood from "../Pages/AddFood/AddFood";
 import MyItems from "../Pages/MyItems/MyItems";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import PrivateRoute from "../Provider/PrivateRoute";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -20,18 +21,20 @@ const router = createBrowserRouter([
       {
         index: true,
         loader: async () => {
-          const res = await fetch("http://localhost:3000/foods");
-          const data = await res.json();
-          return data;
+          const res = await axios.get("http://localhost:3000/foods", {
+            withCredentials: true,
+          });
+          return res.data;
         },
         element: <Home></Home>,
       },
 
       {
         loader: async () => {
-          const res = await fetch("http://localhost:3000/foods");
-          const data = await res.json();
-          return data;
+          const res = await axios.get("http://localhost:3000/foods", {
+            withCredentials: true,
+          });
+          return res.data;
         },
         path: "/fridge",
         element: <Fridge></Fridge>,
@@ -40,9 +43,13 @@ const router = createBrowserRouter([
       {
         path: "/food/:id",
         loader: async ({ params }) => {
-          console.log(params.id);
-          const res = await fetch(`http://localhost:3000/foods/${params.id}`);
-          return res.json();
+          const res = await axios.get(
+            `http://localhost:3000/foods/${params.id}`,
+            {
+              withCredentials: true,
+            }
+          );
+          return res.data;
         },
         element: (
           <PrivateRoute>

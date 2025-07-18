@@ -27,16 +27,6 @@ const Banner = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* <motion.h1
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative inline-block bg-gradient-to-r from-teal-600 via-emerald-500 to-lime-400 bg-clip-text text-4xl font-extrabold italic text-transparent md:text-6xl"
-        >
-          <span className="cool-text">
-            Track. Save. Share. Reduce Food Waste.
-          </span>
-        </motion.h1> */}
         <ShimmeringText
           className={
             "relative inline-block text-4xl font-extrabold italic md:text-6xl"

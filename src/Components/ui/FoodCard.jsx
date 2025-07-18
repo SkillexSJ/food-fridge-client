@@ -2,14 +2,27 @@ import React from "react";
 import { NavLink } from "react-router";
 
 const FoodCard = ({ item }) => {
+  const isExpired = new Date(item.expiryDate) < new Date();
   return (
     <div className="relative rounded-xl p-[2px] snake-gradient shadow-xl">
       <div className="flex h-full transform flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-transform duration-300 hover:scale-105">
-        <img
-          className="h-56 w-full object-cover"
-          src={item.foodImage}
-          alt={item.foodTitle}
-        />
+        {isExpired && (
+          <div className="absolute right-2 top-2 z-10 rounded-full bg-red-500 px-3 py-1 text-sm font-bold text-white">
+            Expired
+          </div>
+        )}
+        <div className="relative">
+          <img
+            className={`h-56 w-full object-cover ${
+              isExpired ? "grayscale" : ""
+            }`}
+            src={item.foodImage}
+            alt={item.foodTitle}
+          />
+          {isExpired && (
+            <div className="absolute inset-0 bg-black opacity-20"></div>
+          )}
+        </div>
         <div className="flex flex-1 flex-col p-6">
           <div className="flex-1">
             <p className="text-sm font-semibold uppercase tracking-wide text-teal-600">
@@ -22,7 +35,7 @@ const FoodCard = ({ item }) => {
               <p className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2 h-5 w-5 text-gray-400"
+                  className="mr-2 h-5 w-5 text-teal-800"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -38,7 +51,7 @@ const FoodCard = ({ item }) => {
               <p className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2 h-5 w-5 text-gray-400"
+                  className="mr-2 h-5 w-5 text-teal-800"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -54,7 +67,7 @@ const FoodCard = ({ item }) => {
           </div>
           <div className="mt-6">
             <NavLink to={`/food/${item._id}`}>
-              <button className="w-full rounded-lg bg-gray-800 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-gray-900">
+              <button className="w-full rounded-lg bg-teal-800 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-teal-600">
                 See Details
               </button>
             </NavLink>

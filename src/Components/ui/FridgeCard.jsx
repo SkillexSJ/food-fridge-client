@@ -5,7 +5,7 @@ const FridgeCard = ({ item }) => {
   const isExpired = new Date(item.expiryDate) < new Date();
   return (
     <div className="relative flex h-full transform flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-transform duration-300 hover:scale-105">
-      {/* --- Expired Badge --- */}
+      {/* Expired */}
       {isExpired && (
         <div className="absolute right-2 top-2 z-10 rounded-full bg-red-500 px-3 py-1 text-sm font-bold text-white">
           Expired
@@ -34,7 +34,7 @@ const FridgeCard = ({ item }) => {
             <p className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="mr-2 h-5 w-5 text-gray-400"
+                className="mr-2 h-5 w-5 text-teal-800"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >

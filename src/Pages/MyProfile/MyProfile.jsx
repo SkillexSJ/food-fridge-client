@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CountUp from "react-countup";
 import hello from "../../assets/lottie/Welcome Animation.json";
 import Lottie from "lottie-react";
+import axios from "axios";
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
   const [activeTab, setActiveTab] = useState("profile");
@@ -11,17 +12,20 @@ const MyProfile = () => {
 
   // fetching
   useEffect(() => {
-    console.log("Fetching for user:", user?.email);
-    if (user?.email) {
-      fetch(`http://localhost:3000/foods?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("Fetched foods:", data);
-          setFoodItems(data);
-        })
-        .catch((err) => console.error("Error fetching recipes:", err));
-    }
-  }, [user?.email]);
+    const fetchUserFoods = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3000/user-foods?email=${user.email}`,
+          { withCredentials: true }
+        );
+        setFoodItems(res.data);
+      } catch (error) {
+        console.error("Error fetching user foods:", error);
+      }
+    };
+
+    if (user?.email) fetchUserFoods();
+  }, [user]);
 
   // Stats
   const stats = {
@@ -56,7 +60,7 @@ const MyProfile = () => {
     }
   };
   return (
-    <div className="bg-gray-100 min-h-screen pb-12">
+    <div className="bg-gray-100  min-h-screen pb-12">
       {/* Header */}
       <div className="relative h-48 md:h-64 bg-gradient-to-r from-teal-50 to-emerald-100">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -79,7 +83,7 @@ const MyProfile = () => {
         <p className="text-sm md:text-md text-gray-500">{user.email}</p>
       </div>
 
-      {/* Welcome Animation */}
+      {/*  Animation */}
       <div className="w-full max-w-s md:max-w-sm mx-auto">
         <Lottie animationData={hello} loop autoplay />
       </div>

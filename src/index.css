@@ -69,9 +69,9 @@
 .snake-gradient {
   background: linear-gradient(
     270deg,
-    #14b8a6, /* teal-500 */
-    #10b981, /* emerald-500 */
-    #84cc16  /* lime-400 */
+    #14b8a6,
+    /* teal-500 */ #10b981,
+    /* emerald-500 */ #84cc16 /* lime-400 */
   );
   background-size: 600% 600%;
   animation: gradient-move 6s ease infinite;
