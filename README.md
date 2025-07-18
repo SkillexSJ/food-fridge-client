@@ -4,7 +4,11 @@
 
 ---
 
-👉 **[Visit Food Fridge](https://food-fridge-8be96.web.app/)**  
+<p align="center">
+  <a href="https://food-fridge-8be96.web.app/" style="font-size: 24px; font-weight: bold;">
+    🚀 <span style="font-size:28px;">Visit Food Fridge</span>
+  </a>
+</p>
 
 
 
